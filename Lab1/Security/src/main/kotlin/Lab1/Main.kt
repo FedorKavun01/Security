@@ -1,8 +1,7 @@
 package Lab1
 
-import java.math.BigInteger
+import java.io.File
 import java.util.*
-import kotlin.experimental.xor
 
 class Main {
 
@@ -15,6 +14,8 @@ fun main() {
     task1()
     println("--------------------------------------------Task2-------------------------------------------------------\n")
     task2()
+    println("--------------------------------------------Task3-------------------------------------------------------\n")
+    task3()
 }
 
 fun task0() {
@@ -51,4 +52,17 @@ fun task2() {
     indexOfConsidenseAnalizer.analyzeKey(result)
 
     println(vigenerDecoder.decodeXorBruteforce(result, 3))
+}
+
+fun task3() {
+    val string = "EFFPQLEKVTVPCPYFLMVHQLUEWCNVWFYGHYTCETHQEKLPVMSAKSPVPAPVYWMVHQLUSPQLYWLASLFVWPQLMVHQLUPLRPSQLULQESPBLWPCSVRVWFLHLWFLWPUEWFYOTCMQYSLWOYWYETHQEKLPVMSAKSPVPAPVYWHEPPLUWSGYULEMQTLPPLUGUYOLWDTVSQETHQEKLPVPVSMTLEUPQEPCYAMEWWYTYWDLUULTCYWPQLSEOLSVOHTLUYAPVWLYGDALSSVWDPQLNLCKCLRQEASPVILSLEUMQBQVMQCYAHUYKEKTCASLFPYFLMVHQLUPQLHULIVYASHEUEDUEHQBVTTPQLVWFLRYGMYVWMVFLWMLSPVTTBYUNESESADDLSPVYWCYAMEWPUCPYFVIVFLPQLOLSSEDLVWHEUPSKCPQLWAOKLUYGMQEUEMPLUSVWENLCEWFEHHTCGULXALWMCEWETCSVSPYLEMQYGPQLOMEWCYAGVWFEBECPYASLQVDQLUYUFLUGULXALWMCSPEPVSPVMSBVPQPQVSPCHLYGMVHQLUPQLWLRPOEDVMETBYUFBVTTPENLPYPQLWLRPTEKLWZYCKVPTCSTESQPBYMEHVPETCMEHVPETZMEHVPETKTMEHVPETCMEHVPETT"
+    val textWorker = TextWorker()
+    val path = "Security/src/main/resources/trigrams"
+    val trigrams: Map<String, Double> = textWorker.fromFile(File(path).absolutePath)
+
+    val geneticAlgorithm = GeneticAlgorithm(trigrams, 500, 200)
+    val result = geneticAlgorithm.decrypt(string)
+
+    println()
+    println(result)
 }
